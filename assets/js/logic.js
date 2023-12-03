@@ -10,13 +10,13 @@ startQuiz.addEventListener("click", function () {
   //open first question: 
 
 
-  let mode = "hide"
+  // let mode = "hide"
 
-  if (mode === "hide") {
-    mode = "show";
-    questionOneText.textContent = "?This is the first questions?";
-    answersOne = "hjkbj";
-  }
+  // if (mode === "hide") {
+  //   mode = "show";
+  //   questionOneText.textContent = "?This is the first questions?";
+  //   answersOne = "hjkbj";
+  // }
 
   // countdown
   const timer = setInterval(function () {
@@ -28,6 +28,60 @@ startQuiz.addEventListener("click", function () {
     }
   }, 1000);
 });
+
+const StartQuiz = () => {
+  document.getElementById("start").classList.add("hide");
+  document.getElementById("questions").classList.remove("hide");
+}
+
+const quizQuestions = () => {
+  generateButtons();
+
+  questionEl.textContent= testQuestionsArray[questionNumber].question;
+};
+
+const generateButtons = () => {
+
+  choicesEl.textContent = "";
+  const answersObject = testQuestionsArray[questionNumber].answers;
+
+  let answerButtonHTML = "";
+   for (let i=0; i < answersObject.length; i++) {
+    answerButtonHTML += `<button class= "button">${answersObject[i]}</button>`;
+   }
+
+   choicesEl.innerHTML = answerButtonHTML;
+
+   const answerButtons = choicesEl.querySelectorAll(".choices");
+
+   answerButtons.forEach((button) => {
+    button.addEventListener("click", function(event) {
+      answer = testQuestionsArray[questionNumber].correctAnswer;
+      iterateQuestion();
+    });
+    
+   });
+}
+
+const iterateQuestion = () => {
+  clearTimeout (progressTimeout);
+  if (answer === event.target.textContent) {
+    progressEl.textContent = "Correct!";;
+    showProgress();
+  } else {
+    progressEl.textContent = "Wrong!";
+    timeLeft = timeLeft - 10;
+    showProgress();
+  }
+
+  questionNumber++;
+
+  if ( questionNumber < testQuestionsArray.length) {
+    quizQuestions();
+  }
+
+  progressTimeout = setTimeout(hideProgress, 3000);
+}
   //subtract time when the answer is incorrect
   //event when the answer is clicked
 

@@ -1,8 +1,13 @@
 // Quiz questions
 
-let questionOneContainer = document.getElementById("questions");
-let questionOneText = document.getElementById("question-title");
-let answersOne = document.getElementById("choices");
+let questionEl = document.querySelector("#question-title");
+let choicesEl= document.querySelector("#choices");
 
-questionOneText.textContent = "?This is the first questions?";
-answersOne = "hjkbj";
+const testQuestionsArray = [
+    {question: "Inside which HTML element do we put the JavaScript?", answers: ["1. <script>, 2.<js>, 3. <scripting>, 4. <javascript>"], correctAnswer: "1. <script>"},
+    {question: "Inside which HTML element do we put the JavaScript?", answers: ["1. <script>, 2.<js>, 3. <scripting>, 4. <javascript>"], correctAnswer: "1. <script>"},
+    {question: "Inside which HTML element do we put the JavaScript?", answers: ["1. <script>, 2.<js>, 3. <scripting>, 4. <javascript>"], correctAnswer: "1. <script>"},
+    {question: "Inside which HTML element do we put the JavaScript?", answers: ["1. <script>, 2.<js>, 3. <scripting>, 4. <javascript>"], correctAnswer: "1. <script>"},
+    {question: "Inside which HTML element do we put the JavaScript?", answers: ["1. <script>, 2.<js>, 3. <scripting>, 4. <javascript>"], correctAnswer: "1. <script>"},
+];
+
