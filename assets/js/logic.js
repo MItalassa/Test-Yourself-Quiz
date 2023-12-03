@@ -1,38 +1,63 @@
-//define questions
+
 // start button: event listener to trigger the timer and 1st question appears
 //start button and timer
-let count = 180;
+  //subtract time when the answer is incorrect
+  //event when the answer is clicked
 
-let timeEl = document.querySelector("#time");
-let secondsLeft = timeEl.textContent = count;
+
+
+ //open first question: add click event listener to "start quiz" button
+  // display the first question based on the questions that we have defined
+  // hide the start screen
+  //show questions screen and populate it with questions and the choices
+  // add  click event listener to choices div and check if the choice button is clicked
+  //      if it's correct 
+  //          display "coorect answer" in feedback div
+  //          hide feedback div then display next question
+  //      if not correct
+  //subtract the timer
+  //display "wrong answer" in feedback div
+  //check the timer
+  //if timer > 0, hide feedback div then display next question
+  // if timer<=0, hide feedback div then go display "end screen" scrfeen and hide question screen
+let count = 180;
+          // let scoreEl = document.querySelector("final-score");
+          // let HighscoreListEl = document.querySelector("highscores");
+          // let initialsInput = document.querySelector("initials");
+          // let saveButtonEl = document.querySelector("submit");
+          // //let progressEl = document.querySelector()/ 
+
+          // let questionNumber= 0;
+          // let quizEnded = false;
+          // let progressTimeout;
+
+          // const userInfoArr= JSON.parse(localStorage.getItem('userInfoArr')) || [];
+
+//function to start the quiz: trigger timer, hide start screen, function to display question one
+let timerEl = document.querySelector("#time");
+let secondsLeft = timerEl.textContent = count;
+
 const startQuiz = document.querySelector("#start");
 startQuiz.addEventListener("click", function () {
-  //open first question: 
-
-
-  // let mode = "hide"
-
-  // if (mode === "hide") {
-  //   mode = "show";
-  //   questionOneText.textContent = "?This is the first questions?";
-  //   answersOne = "hjkbj";
-  // }
-
+    document.getElementById("start-screen").classList.add("hide");
+    document.getElementById("questions").classList.add("start");
+  
+    timer();
+  
+    quizQuestions();
+});  
   // countdown
   const timer = setInterval(function () {
     count--;
-    timeEl.textContent = count;
+    timerEl.textContent = count;
     if (count === 0) {
       clearInterval(timer);
       sendMessage("Time's up!");
     }
   }, 1000);
-});
 
-const StartQuiz = () => {
-  document.getElementById("start").classList.add("hide");
-  document.getElementById("questions").classList.remove("hide");
-}
+
+
 
 const quizQuestions = () => {
   generateButtons();
@@ -70,7 +95,7 @@ const iterateQuestion = () => {
     showProgress();
   } else {
     progressEl.textContent = "Wrong!";
-    timeLeft = timeLeft - 10;
+    count = count - 10;
     showProgress();
   }
 
@@ -81,26 +106,21 @@ const iterateQuestion = () => {
   }
 
   progressTimeout = setTimeout(hideProgress, 3000);
+};
+
+const showProgress = () => progressEl.removeAttribute("style");
+const hideProgress = () => progressEl.style.display="none";
+
+const endQuiz = () => {
+  clearInterval (timer);
+
+  document.getElementById("questions").classList.add("hide");
+  document.getElementById("time").classList.add("hide");
+  document.getElementById("final-score").classList.remove("hide");
+
+
 }
-  //subtract time when the answer is incorrect
-  //event when the answer is clicked
 
-
-
- //open first question: add click event listener to "start quiz" button
-  // display the first question based on the questions that we have defined
-  // hide the start screen
-  //show questions screen and populate it with questions and the choices
-  // add  click event listener to choices div and check if the choice button is clicked
-  //      if it's correct 
-  //          display "coorect answer" in feedback div
-  //          hide feedback div then display next question
-  //      if not correct
-  //subtract the timer
-  //display "wrong answer" in feedback div
-  //check the timer
-  //if timer > 0, hide feedback div then display next question
-  // if timer<=0, hide feedback div then go display "end screen" scrfeen and hide question screen
 
 // insert questions via JS. define questions and the answers, put it in a variable in questions.js file
 // const questionOne = document.createElement('div');
