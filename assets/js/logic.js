@@ -40,8 +40,9 @@ let secondsLeft = timerEl.textContent = count;
 const startQuiz = document.querySelector("#start");
 startQuiz.addEventListener("click", function () {
     document.getElementById("start-screen").classList.add("hide");
-    document.getElementById("questions").classList.add("start");
-  
+    document.getElementById("questions").classList.remove("hide");
+    GenerateQuestion(); 
+ 
     timer();
   
     quizQuestions();
@@ -59,11 +60,11 @@ startQuiz.addEventListener("click", function () {
 
 
 
-const quizQuestions = () => {
-  generateButtons();
+// const quizQuestions = () => {
+//   generateButtons();
 
-  questionEl.textContent= testQuestionsArray[questionNumber].question;
-};
+//   questionEl.textContent= testQuestionsArray[questionNumber].question;
+// };
 
 const generateButtons = () => {
 
